@@ -1,0 +1,63 @@
+{
+  "name": "desktop-angular",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/desktop-angular/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "index": "apps/desktop-angular/src/index.html",
+        "main": "apps/desktop-angular/src/main.ts",
+        "tsConfig": "apps/desktop-angular/tsconfig.app.json",
+        "outputPath": "dist/apps/desktop-angular"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/desktop-angular/src/environments/environment.ts",
+              "with": "apps/desktop-angular/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "desktop-angular:build",
+        "proxyConfig": "apps/desktop-angular/proxy.conf.json",
+        "port": 4300
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "desktop-angular:build:production",
+          "hmr": false
+        }
+      }
+    }
+  },
+  "tags": []
+}
