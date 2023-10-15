@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "serve": "nx serve desktop-angular & nx serve desktop-electron --verbose",
+    "serve": "npm-run-all -p serve-angular serve-electron",
+    "serve-angular": "nx serve desktop-angular",
+    "serve-electron": "wait-on http-get://localhost:4200/ && nx serve desktop-electron",
     "serve-react": "nx serve desktop-react",
     "pick-make": "/bin/bash pick-identity-and-make.sh",
     "pick-pack": "/bin/bash pick-identity-and-pack.sh"
@@ -22,6 +24,7 @@
     "@angular/platform-browser": "^16.2.8",
     "@angular/platform-browser-dynamic": "^16.2.8",
     "@angular/router": "^16.2.8",
+    "nx": "16.10.0",
     "@swc/helpers": "~0.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -45,6 +48,7 @@
     "@nx/react": "16.10.0",
     "@nx/vite": "16.10.0",
     "@nx/workspace": "16.10.0",
+    "@nx/devkit": "16.10.0",
     "@types/jasmine": "5.1.0",
     "jasmine-core": "5.1.1",
     "karma": "6.4.2",
@@ -76,13 +80,13 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jsdom": "~22.1.0",
-    "nx": "16.10.0",
     "nx-electron": "^16.0.0-beta.1",
     "prettier": "^2.6.2",
     "sass": "^1.55.0",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "vite": "~4.3.9",
-    "vitest": "~0.32.0"
+    "vitest": "~0.32.0",
+    "wait-on": "^7.0.1"
   }
 }
